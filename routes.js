@@ -23,22 +23,6 @@ let params2 = {
 
 }
 
-fetch("https://jsonplaceholder.typicode.com/todos", {
-  method: "POST",
-  body: JSON.stringify({
-    userId: 1,
-    title: "Fix my bugs",
-    completed: false
-  }),
-  headers: {
-    "Content-type": "application/json; charset=UTF-8"
-  }
-})
-  .then((response) => response.json())
-  .then((json) => console.log(json));
-
-  
-
 async function getData2(){
 const reponse = await fetch(api_url)
 const data = await reponse.json();
@@ -51,7 +35,7 @@ function getData(){
 }
 
 let api_url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(params.pagesize)}`
-let api_url2 = `https://api.nal.usda.gov/fdc/v1/foods/search`;
+let api_url2 = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}`;
 
 
 //getData().then(data=> console.log(data.foods[0].foodNutrients[0].value));
@@ -75,13 +59,9 @@ router.get("/food",function(req,res) {
   fetch(api_url2, {
   method: "POST",
   body: JSON.stringify({
-    "query" : params.query,
-    "dataType": [
-      "Foundation",
-      "Survey (FNDDS)"
-    ],
-    pagesize: 5,
-    pageNumber: 1
+    "query" : params.query
+    dataType: ["Survey (FNDDS)"],
+    pagesize : 5
   }),
   headers: {
     "Content-type": "application/json",
