@@ -69,7 +69,7 @@ router.get("/food",function(req,res) {
   }
 })
   .then((response) => response.json())
-  .then((json) => console.log(json));
+  .then((json) => res.json({name : json}));
   res.json(null);
 });
 
