@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<!--
+	Shows use of form events
+-->	
+<link rel = "stylesheet" type = "text/css" href = "style.css"> 
+	<head>
+	<title>Calorie Tracker</title>
+	<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	
+	</head>
+	<body>
+		<div class= "title">
+		<h1 id = "title">Calorie Tracker</h1>
+		<hr>
+		<form action="#">
+		
+		
+		<input type="text" placeholder="Search..." id = "search">
+		
+		<div/>
+
+		<ul id='food'></ul>
+
+	<script>
+		$(document).ready(function(){        
+
+
+				$(document).on('keypress',function(e) {
+
+					if(e.which == 13) {
+					
+						clicked();
+						
+						
+					}
+				});
+
+				}); 
+	function clicked()
+	{
+	/* console.log("CLICKED FUNCTIOn")
+	$.get("/food",function(data){
+		
+		console.log(data.protein);
+		//$("#food").append('<li>' +"protein " + data.protein + '</li>');
+	}); */
+
+
+	$.ajax({
+	url: "/food",
+	type: "GET",
+	data: {foodName:$("#search").val()},
+	success: add
+	});
+
+
+	}
+	function add(data){
+
+		$("#food").append('<li>' + data.name + " : " + data.val + '</li>');
+
+	}
+
+
+
+
+
+
+	</script>
+
+	</body>
+</html>
