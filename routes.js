@@ -29,7 +29,7 @@ function getData(){
 }
 
 let api_url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(params.pagesize)}`
-//let api_url = `https://api.spoonacular.com/food/ingredients/search?query=${encodeURIComponent(params.query)}`
+
 
 
 
