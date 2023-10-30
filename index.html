@@ -3,11 +3,12 @@
 <!--
 	Shows use of form events
 -->	
-<link rel = "stylesheet" type = "text/css" href = "style.css"> 
+	<link rel = "stylesheet" type = "text/css" href = "style.css">
 	<head>
-	<title>Calorie Tracker</title>
-	<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-	
+		<title>Fifth JQuery Ex</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js">
+
+	</script>
 	</head>
 	<body>
 		<div class= "title">
@@ -15,59 +16,43 @@
 		<hr>
 		<form action="#">
 		
-		
-		<input type="text" placeholder="Search..." id = "search">
-		
+		<div class = "searchbar">
+		<input type="text" placeholder="Search...">
 		<div/>
+		<div/>
+		<div id="stage">
+		  <a href="lumpia.jpg"><img src="lumpia.jpg" width="360" height="270"></a>
+		  <a href="ramen.jpg"><img src="ramen.jpg" width="360" height="270"></a>
+		  <a href="siumai.jpg"><img src="siumai.jpg" width="360" height="270"></a>
+		  
+		</div>
 
-		<ul id='food'></ul>
-
-	<script>
-		$(document).ready(function(){        
-
-
-				$(document).on('keypress',function(e) {
-
-					if(e.which == 13) {
-					
-						clicked();
-						
-						
-					}
-				});
-
-				}); 
-	function clicked()
-	{
-	/* console.log("CLICKED FUNCTIOn")
-	$.get("/food",function(data){
 		
-		console.log(data.protein);
-		//$("#food").append('<li>' +"protein " + data.protein + '</li>');
-	}); */
+		</form>
 
+	<script type="text/javascript">
 
-	$.ajax({
-	url: "/food",
-	type: "GET",
-	data: {foodName:$("#search").val()},
-	success: add
-	});
+	window.addEventListener("DOMContentLoaded", function(e) {
 
+	    var stage = document.getElementById("stage");
+	    var fadeComplete = function(e) { stage.appendChild(arr[0]); };
+	    var arr = stage.getElementsByTagName("a");
+	    for(var i=0; i < arr.length; i++) {
+	      arr[i].addEventListener("animationend", fadeComplete, false);
+	    }
 
-	}
-	function add(data){
-
-		$("#food").append('<li>' + data.name + " : " + data.val + '</li>');
-
-	}
-
-
-
-
-
-
+	  }, false);
 	</script>
 
+
+
+
+
+
+
+
+
+
+		</script>
 	</body>
 </html>
