@@ -1,17 +1,4 @@
-$(document).ready(function(){        
 
-
-    $(document).on('keypress',function(e) {
-
-        if(e.which == 13) {
-        
-            clicked();
-            
-            
-        }
-    });
-
-    }); 
 function clicked()
 {
     var query = $("#search").val();
@@ -25,6 +12,11 @@ success: add
 
 
 }
+function askServings()
+{
+	console.log("serving size function")
+	alert("testing");
+}
 function add(data){
 if(!data){
     alert("ERROR");
@@ -32,11 +24,13 @@ if(!data){
 
 console.log("success function")
 
+$("#food").empty();
+
 var calories = 0;
 var fats = 0;
 var carbs = 0;
 var proteins = 0;
-var sugars =0;
+var sugars = 0;
 
 for(var j = 0;j<5;j++){
 	var nutrients = data.name.foods[j].foodNutrients
@@ -63,7 +57,24 @@ for(var j = 0;j<5;j++){
 		$("#food").append('<li>' + data.name.foods[j].description + " : Calories - " + calories +
     " kcal, Total Fats - " + fats + " g, Carbs - " + carbs + " g, Proteins - " + proteins +
     " g , Sugars - " + sugars + " g" + '</li>');
+		$("#food").append('<li>' + '<input id="foodButton" type="button" value="Choose option" />' + '</li>');
+		
 		}
 
 
 }
+$(document).ready(function(){        
+
+
+    $(document).on('keypress',function(e) {
+
+        if(e.which == 13) {
+        
+            clicked();
+            
+            
+        }
+    });
+    $("#foodButton").click(askServings);
+
+    }); 
