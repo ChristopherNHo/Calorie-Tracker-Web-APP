@@ -12,10 +12,14 @@ success: add
 
 
 }
-function askServings()
+function askServings(number)
 {
-	console.log("serving size function")
-	alert("testing");
+	//ask server for array information, multiply values and send back here
+	console.log("serving size function " + number)
+	$(".serving").empty();
+	$(".serving").text("How many servings? (Serving size = 100g)")
+	$(".serving").append('<input id="servings" type="number" value="1" >');
+	
 }
 function add(data){
 if(!data){
@@ -24,6 +28,7 @@ if(!data){
 
 console.log("success function")
 
+$(".serving").empty();
 $("#food").empty();
 
 var calories = 0;
@@ -31,6 +36,7 @@ var fats = 0;
 var carbs = 0;
 var proteins = 0;
 var sugars = 0;
+
 
 for(var j = 0;j<5;j++){
 	var nutrients = data.name.foods[j].foodNutrients
@@ -53,13 +59,38 @@ for(var j = 0;j<5;j++){
 			}
 
 		}
-		console.log(data.name.foods[j]);
+		//send nutrient values to server, have server store it in an array
+		var values = "Choose option " + (j+1);
 		$("#food").append('<li>' + data.name.foods[j].description + " : Calories - " + calories +
     " kcal, Total Fats - " + fats + " g, Carbs - " + carbs + " g, Proteins - " + proteins +
-    " g , Sugars - " + sugars + " g" + '</li>');
-		$("#food").append('<li>' + '<input id="foodButton" type="button" value="Choose option" />' + '</li>');
-		
+    " g , Sugars - " + sugars + " g" +  '</li>');
+
+
+
+// HARD CODED, FIX LATER
+
+		if(j == 0){
+			$("#food").append('<li> <input id=option0 onclick="askServings(0)" type="button"  /><li>');
+			$("#option0").val(values);
 		}
+		else if(j == 1){
+			$("#food").append('<li> <input id=option1 onclick="askServings(1)" type="button"  /><li>');
+			$("#option1").val(values);
+		}
+		else if(j == 2){
+			$("#food").append('<li> <input id=option2 onclick="askServings(2)" type="button"  /><li>');
+			$("#option2").val(values);
+		}
+		else if(j == 3){
+			$("#food").append('<li> <input id=option3 onclick="askServings(3)" type="button"  /><li>');
+			$("#option3").val(values);
+		}
+		else if(j == 4){
+			$("#food").append('<li> <input id=option4 onclick="askServings(4)" type="button"  /><li>');
+			$("#option4").val(values);
+		}
+		
+	}
 
 
 }
@@ -75,6 +106,5 @@ $(document).ready(function(){
             
         }
     });
-    $("#foodButton").click(askServings);
 
     }); 
