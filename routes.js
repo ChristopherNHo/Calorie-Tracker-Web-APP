@@ -4,7 +4,8 @@ let router = express.Router();
 let fetch = require("node-fetch");
 
 
-
+let total = [];
+let totalIndex = 0;
 //PARAMETERS WE PASS WHEN WE DO AN API CALL
 
 let params = {
@@ -66,6 +67,27 @@ router.get("/foodsearch",function(req,res) {
 
 
   
+});
+router.post("/addfood",function(req,res) {
+console.log("ADDED POST")
+var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
+total[totalIndex] = temp;
+res.json(total[totalIndex]);
+totalIndex++;
+
+});
+router.get("/checktotal",function(req,res) {
+console.log("CHECK GET");
+if(total[0]==null){
+  res.json(null);
+}
+else{
+    res.json(total);
+
+
+}
+
+
 });
 
 
