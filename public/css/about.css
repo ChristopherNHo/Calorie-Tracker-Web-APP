@@ -1,0 +1,43 @@
+h1{
+    /*text-shadow: 2px 2px 4px rgba(65, 65, 255, 0.1),
+              3px 4px 4px rgba(65, 65, 255, 0.15),
+              4px 6px 4px rgba(65, 65, 255, 0.2),
+              5px 8px 4px rgba(65, 65, 255, 0.25);*/
+    font-size: 70px;
+      font-weight: 600;
+      /*background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, #4140FF, #1414C8 10%, #4140FF 20%);*/
+     /* color: transparent;*/
+  color: #333;
+      background-clip: text;
+      -webkit-background-clip: text;
+   text-align: center;
+   
+}
+#title{
+   text-align: center;
+   font-family: Fantasy;
+}
+ul {
+ list-style-type: none;
+ margin: 0;
+ padding: 0;
+ overflow: hidden;
+ background-color: #333;
+}
+
+li {
+ float: left;
+}
+
+li a {
+ display: block;
+ color: white;
+ text-align: center;
+ padding: 14px 16px;
+ text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+ background-color: #111;
+}
