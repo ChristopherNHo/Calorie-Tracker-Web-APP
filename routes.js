@@ -12,10 +12,8 @@ let params = {
   query : 'apple',
   dataType: ["Survey (FNDDS)"],
   pagesize: 5,
-
 }
 
-let api_url = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}&query=${encodeURIComponent(params.query)}&dataType=${encodeURIComponent(params.dataType)}&pagesize=${encodeURIComponent(params.pagesize)}`
 let api_url2 = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${encodeURIComponent(params.api_key)}`;
 
 
@@ -25,6 +23,9 @@ router.get("/",function(req,res) {
 });
 router.get("/total",function(req,response) {
   response.sendFile(__dirname + "/public/views/total.html");
+});
+router.get("/about",function(req,response) {
+  response.sendFile(__dirname + "/public/views/about.html");
 });
 router.get("/foodsearch",function(req,res) {
   console.log("GET REQUEST")

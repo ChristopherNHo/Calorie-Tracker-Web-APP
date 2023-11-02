@@ -4,7 +4,7 @@ function clicked()
     var query = $("#search").val();
 $("#search").val("");
 $.ajax({
-url: "/food",
+url: "/foodsearch",
 type: "GET",
 data: {foodName:query},
 success: add

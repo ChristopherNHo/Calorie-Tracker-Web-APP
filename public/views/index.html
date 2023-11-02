@@ -3,12 +3,19 @@
 <!--
 	Shows use of form events
 -->	
-	<link rel = "stylesheet" type = "text/css" href = "style.css">
+	<link rel = "stylesheet" type = "text/css" href = "/css/style.css">
 	<head>
 		<title>Fifth JQuery Ex</title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js">
-
 	</script>
+
+	<ul id = "navigation">
+	  <li class = "navigation"><a href="http://localhost:3000">Home</a></li>
+	  <li class = "navigation"><a href="http://localhost:3000/total">Totals</a></li>
+	  <li class = "navigation"><a href="http://localhost:3000/about">About</a></li>
+	  
+	</ul>
+
 	</head>
 	<body>
 		<div class= "title">
@@ -17,18 +24,26 @@
 		<form action="#">
 		
 		<div class = "searchbar">
-		<input type="text" placeholder="Search...">
+		<input type="text" placeholder="Search..." id= "search">
 		<div/>
 		<div/>
+
+
+		<ul id='food'></ul>
+		<br>
+		<br>
+		<br>
+
 		<div id="stage">
-		  <a href="lumpia.jpg"><img src="lumpia.jpg" width="360" height="270"></a>
-		  <a href="ramen.jpg"><img src="ramen.jpg" width="360" height="270"></a>
-		  <a href="siumai.jpg"><img src="siumai.jpg" width="360" height="270"></a>
+		  <a href="/images/lumpia.jpg"><img src="images/lumpia.jpg" width="360" height="270"></a>
+		  <a href="/images/ramen.jpg"><img src="images/ramen.jpg" width="360" height="270"></a>
+		  <a href="/images/siumai.jpg"><img src="images/siumai.jpg" width="360" height="270"></a>
 		  
 		</div>
 
 		
 		</form>
+	<script src="js/home.js"></script>
 
 	<script type="text/javascript">
 
@@ -43,16 +58,3 @@
 
 	  }, false);
 	</script>
-
-
-
-
-
-
-
-
-
-
-		</script>
-	</body>
-</html>
