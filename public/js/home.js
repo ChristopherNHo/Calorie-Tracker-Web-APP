@@ -21,6 +21,9 @@ function askServings(number)
 	$(".serving").append('<input id="servings" type="number" value="1" >');
 	
 }
+function addTotal(){
+	console.log("THIS WORKS FOOD ADDED")
+}
 function add(data){
 if(!data){
     alert("ERROR");
