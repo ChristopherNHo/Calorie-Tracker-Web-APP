@@ -28,10 +28,10 @@ router.get("/total",function(req,response) {
 router.get("/about",function(req,response) {
   response.sendFile(__dirname + "/public/views/about.html");
 });
-router.get("/foodsearch",function(req,res) {
+router.post("/foodsearch",function(req,res) {
   console.log("GET REQUEST")
 
-  params.query = req.query.foodName;
+  params.query = req.body.foodName;
 
   fetch(api_url2, {
   method: "POST",
@@ -73,7 +73,7 @@ console.log("ADDED POST")
 var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 total[totalIndex] = temp;
 res.json(total[totalIndex]);
-totalIndex++;
+
 
 });
 router.get("/checktotal",function(req,res) {
@@ -82,7 +82,7 @@ if(total[0]==null){
   res.json(null);
 }
 else{
-    res.json(total);
+    res.json({total:total, index: totalIndex});
 
 
 }
