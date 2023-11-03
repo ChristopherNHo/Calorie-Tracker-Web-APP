@@ -1,3 +1,5 @@
+let chosenOption = 0;
+
 
 function clicked()
 {
@@ -14,12 +16,22 @@ success: add
 }
 function askServings(number)
 {
-	//ask server for array information, multiply values and send back here
+	chosenOption = number;
 	console.log("serving size function " + number)
 	$(".serving").empty();
-	$(".serving").text("How many servings? (Serving size = 100g)")
+	$(".serving").text("How many servings of option " + (number+1) +  "? (Serving size = 100g)")
 	$(".serving").append('<input id="servings" type="number" value="1" >');
 	
+}
+function updateTotal(multiplier)
+{
+	alert(multiplier);
+	$(".serving").empty();
+	$.ajax({
+	url: "/getfoodlist",
+	type: "GET",
+	data: {index:chosenOption}
+});
 }
 function addTotal(){
 	console.log("THIS WORKS FOOD ADDED")
@@ -68,28 +80,35 @@ for(var j = 0;j<5;j++){
     " kcal, Total Fats - " + fats + " g, Carbs - " + carbs + " g, Proteins - " + proteins +
     " g , Sugars - " + sugars + " g" +  '</li>');
 
+		$.ajax({
+            url: "/addfoodlist",
+            type: "POST",
+            data: {foodName:data.name.foods[j].description, calories:calories, fats:fats, carbs:carbs, proteins:proteins, sugars:sugars},  
+            dataType: "json"
+          });
+
 
 
 // HARD CODED, FIX LATER
 
 		if(j == 0){
-			$("#food").append('<li> <input id=option0 onclick="askServings(0)" type="button"  /><li>');
+			$("#food").append('<li> <input id=option0 onclick="askServings(0)" type="button"  /></li>');
 			$("#option0").val(values);
 		}
 		else if(j == 1){
-			$("#food").append('<li> <input id=option1 onclick="askServings(1)" type="button"  /><li>');
+			$("#food").append('<li> <input id=option1 onclick="askServings(1)" type="button"  /></li>');
 			$("#option1").val(values);
 		}
 		else if(j == 2){
-			$("#food").append('<li> <input id=option2 onclick="askServings(2)" type="button"  /><li>');
+			$("#food").append('<li> <input id=option2 onclick="askServings(2)" type="button"  /></li>');
 			$("#option2").val(values);
 		}
 		else if(j == 3){
-			$("#food").append('<li> <input id=option3 onclick="askServings(3)" type="button"  /><li>');
+			$("#food").append('<li> <input id=option3 onclick="askServings(3)" type="button"  /></li>');
 			$("#option3").val(values);
 		}
 		else if(j == 4){
-			$("#food").append('<li> <input id=option4 onclick="askServings(4)" type="button"  /><li>');
+			$("#food").append('<li> <input id=option4 onclick="askServings(4)" type="button"  /></li>');
 			$("#option4").val(values);
 		}
 		
@@ -99,15 +118,21 @@ for(var j = 0;j<5;j++){
 }
 $(document).ready(function(){        
 
-
-    $(document).on('keypress',function(e) {
-
-        if(e.which == 13) {
-        
-            clicked();
-            
-            
+	$("#search").keydown( function( event ) {
+        if ( event.which === 13 ) {
+          clicked();
+          event.preventDefault();
+          return false;
         }
     });
+    
+    $(".serving").keydown( function( event ) {
+        if ( event.which === 13 ) {
+          //alert("serving button + enter")
+          updateTotal($("#servings").val())
+          event.preventDefault();
+          return false;
+        }
+      }); 
+  });
 
-    }); 
