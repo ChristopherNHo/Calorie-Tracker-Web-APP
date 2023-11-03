@@ -4,6 +4,9 @@ let router = express.Router();
 let fetch = require("node-fetch");
 
 
+let foodList = [];
+let foodListIndex = 0;
+
 let total = [];
 let totalIndex = 0;
 //PARAMETERS WE PASS WHEN WE DO AN API CALL
@@ -28,10 +31,10 @@ router.get("/total",function(req,response) {
 router.get("/about",function(req,response) {
   response.sendFile(__dirname + "/public/views/about.html");
 });
-router.post("/foodsearch",function(req,res) {
+router.get("/foodsearch",function(req,res) {
   console.log("GET REQUEST")
 
-  params.query = req.body.foodName;
+  params.query = req.query.foodName;
 
   fetch(api_url2, {
   method: "POST",
@@ -64,16 +67,32 @@ router.post("/foodsearch",function(req,res) {
     
   })
   
-
-
-  
 });
+
+
+router.post("/addfoodlist",function(req,res) {
+console.log("ADDED POST FOOD LIST")
+foodList = [];
+var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
+foodList[foodListIndex] = temp;
+foodListIndex++;
+res.json(foodList[foodListIndex-1]);
+
+});
+
+router.get("/getfoodlist",function(req,res) {
+console.log("GET ITEM FROM FOOD LIST")
+
+res.json(foodList[req.query.index]);
+
+});
+
 router.post("/addfood",function(req,res) {
 console.log("ADDED POST")
 var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 total[totalIndex] = temp;
 res.json(total[totalIndex]);
-
+totalIndex++;
 
 });
 router.get("/checktotal",function(req,res) {
@@ -82,7 +101,7 @@ if(total[0]==null){
   res.json(null);
 }
 else{
-    res.json({total:total, index: totalIndex});
+    res.json(total);
 
 
 }
