@@ -72,27 +72,33 @@ router.get("/foodsearch",function(req,res) {
 
 router.post("/addfoodlist",function(req,res) {
 console.log("ADDED POST FOOD LIST")
-foodList = [];
+
 var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 foodList[foodListIndex] = temp;
+console.log(foodList[foodListIndex])
+console.log(foodListIndex)
 foodListIndex++;
 res.json(foodList[foodListIndex-1]);
 
 });
 
 router.get("/getfoodlist",function(req,res) {
+console.log(req.query.index);
 console.log("GET ITEM FROM FOOD LIST")
+console.log(foodList[req.query.index]);
+total[totalIndex] = foodList[req.query.index];
 
 res.json(foodList[req.query.index]);
-
+totalIndex++;
 });
 
 router.post("/addfood",function(req,res) {
 console.log("ADDED POST")
 var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 total[totalIndex] = temp;
-res.json(total[totalIndex]);
 totalIndex++;
+res.json(total[totalIndex]);
+
 
 });
 router.get("/checktotal",function(req,res) {
@@ -101,7 +107,7 @@ if(total[0]==null){
   res.json(null);
 }
 else{
-    res.json(total);
+    res.json({total:total,index:totalIndex});
 
 
 }
