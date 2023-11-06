@@ -1,73 +1,82 @@
-.title input[type=text] {
+@font-face {
+  font-family: 'Bigdex';
+  src: url('/fonts/Bigdex.ttf');
+}
+
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('/fonts/BebasNeue-Regular.ttf');
+}
+
+.searchbar input[type=text] {
   float: middle;
   padding: 6px;
-  margin-top: 8px;
-  margin-right: 16px;
   border: 1px;
   font-size: 30px;
   text-align: center;
+  font-family: 'BebasNeue', Fantasy, sans-serif;
+  font-weight: 30;
+  color: #00206b;
 }
-#title{
+
+.searchbar {
+  float: middle;
   text-align: center;
 }
  h1{
- 	/*text-shadow: 2px 2px 4px rgba(65, 65, 255, 0.1),
-               3px 4px 4px rgba(65, 65, 255, 0.15),
-               4px 6px 4px rgba(65, 65, 255, 0.2),
-               5px 8px 4px rgba(65, 65, 255, 0.25);*/
+ 	text-shadow: 2px 2px 4px rgba(0, 32, 107, 0.25),
+               3px 4px 4px rgba(0, 32, 107, 0.5),
+               4px 6px 4px rgba(0, 32, 107, 0.75),
+               5px 8px 4px rgba(0, 32, 107, 1);
  	font-size: 70px;
  	  font-weight: 600;
  	  /*background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, #4140FF, #1414C8 10%, #4140FF 20%);*/
  	 /* color: transparent;*/
-   color: #333;
+   color: #f2f2f2;
  	  background-clip: text;
  	  -webkit-background-clip: text;
 	text-align: center;
 	
 }
-#title{
-	text-align: center;
-	font-family: Fantasy;
+/*
+@font-face {
+  font-family: 'Tealand';
+  src: url('/fonts/Tealand.otf');
 }
 
- #stage {
-    margin: 1em auto;
-    width: 382px;
-    height: 292px;
-  }
+@font-face {
+  font-family: 'Super Milk';
+  src: url('/fonts/Super Milk.ttf');
+}
 
-  #stage a {
-    position: absolute;
-  }
-  #stage a img {
-    padding: 10px;
-    border: 1px solid #ccc;
-    background: #fff;
-  }
+@font-face {
+  font-family: 'Grinched';
+  src: url('/fonts/GrinchedRegular.otf');
+}
 
-  #stage a:nth-of-type(1) {
-    animation-name: fader;
-    animation-delay: 4s;
-    animation-duration: 1s;
-    z-index: 20;
-  }
-  #stage a:nth-of-type(2) {
-    z-index: 10;
-  }
-  #stage a:nth-of-type(n+3) {
-    display: none;
-  }
+@font-face {
+  font-family: 'Wigglye';
+  src: url('/fonts/Wigglye.ttf');
+}
+*/
 
-  @keyframes fader {
-    from { opacity: 1.0; }
-    to   { opacity: 0.0; }
-  }
+
+#title{
+  background: #148bff;
+	text-align: center;
+	font-family: 'Bigdex', Fantasy, sans-serif;
+  font-weight: 30;
+}
+
+ 
  #navigation {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #148bff;
+  font-family: 'BebasNeue', Fantasy, sans-serif;
+  font-weight: 30;
 }
 
 #navigation li {
@@ -84,7 +93,8 @@
 
 /* Change the link color to #111 (black) on hover */
 #navigation li a:hover {
-  background-color: #111;
+  background-color: #f2f2f2;
+  color: #00206b;
 }
   
 /* logo slider css */
@@ -113,7 +123,8 @@ logos body {
   padding: 60px 0;
   background: white;
   white-space: nowrap;
-  position: relative;
+  position: absolute; /* originally set to position: relative; */
+  bottom: 0px;
 }
 
 .logos:before,
