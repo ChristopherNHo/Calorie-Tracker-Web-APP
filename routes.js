@@ -72,7 +72,8 @@ router.get("/foodsearch",function(req,res) {
 
 router.post("/addfoodlist",function(req,res) {
 console.log("ADDED POST FOOD LIST")
-
+if(foodListIndex == 5)
+  foodListIndex = 0;
 var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 foodList[foodListIndex] = temp;
 console.log(foodList[foodListIndex])
@@ -82,11 +83,20 @@ res.json(foodList[foodListIndex-1]);
 
 });
 
-router.get("/getfoodlist",function(req,res) {
-console.log(req.query.index);
-console.log("GET ITEM FROM FOOD LIST")
-console.log(foodList[req.query.index]);
-total[totalIndex] = foodList[req.query.index];
+router.put("/getfoodlist",function(req,res) {
+console.log(req.body.index);
+console.log("CHANGE ITEM FROM FOOD LIST")
+
+foodList2 = foodList
+
+foodList2[req.body.index].calories *= req.body.multiplier;
+foodList2[req.body.index].fats *= req.body.multiplier;
+foodList2[req.body.index].carbs *= req.body.multiplier;
+foodList2[req.body.index].proteins *= req.body.multiplier;
+foodList2[req.body.index].sugars *= req.body.multiplier;
+
+console.log(foodList2[req.body.index].calories);
+total[totalIndex] = foodList2[req.body.index];
 
 res.json(foodList[req.query.index]);
 totalIndex++;
