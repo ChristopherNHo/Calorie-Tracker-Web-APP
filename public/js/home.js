@@ -17,7 +17,6 @@ success: add
 function askServings(number)
 {
 	chosenOption = number;
-	console.log("serving size function " + number)
 	$(".serving").empty();
 	$(".serving").text("How many servings of option " + (number+1) +  "? (Serving size = 100g)")
 	$(".serving").append('<input id="servings" type="number" value="1" >');
@@ -25,13 +24,13 @@ function askServings(number)
 }
 function updateTotal(multiplier)
 {
-	alert(multiplier);
 	$(".serving").empty();
 	$.ajax({
 	url: "/getfoodlist",
-	type: "GET",
-	data: {index:chosenOption}
+	type: "PUT",
+	data: {index:chosenOption, multiplier:multiplier}
 });
+
 }
 function addTotal(){
 	console.log("THIS WORKS FOOD ADDED")
@@ -40,8 +39,6 @@ function add(data){
 if(!data){
     alert("ERROR");
 }
-
-console.log("success function")
 
 $(".serving").empty();
 $("#food").empty();
