@@ -8,14 +8,67 @@
   src: url('/fonts/BebasNeue-Regular.ttf');
 }
 
+#navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #148bff;
+  font-family: 'BebasNeue', Fantasy, sans-serif;
+  font-weight: 30;
+
+}
+
+#navigation li a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+#navigation li a:hover {
+  color: #00206b;
+}
+
+#title{
+  text-shadow: 2px 2px 4px rgba(0, 32, 107, 0.25),
+               3px 4px 4px rgba(0, 32, 107, 0.5),
+               4px 6px 4px rgba(0, 32, 107, 0.75),
+               5px 8px 4px rgba(0, 32, 107, 1);
+  font-size: 110px;
+  font-weight: 30;
+    /*background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, #4140FF, #1414C8 10%, #4140FF 20%);*/
+   /* color: transparent;*/
+  color: #f2f2f2;
+  background-color: #148bff;
+  font-family: 'Bigdex', Fantasy, sans-serif;
+  float: middle;
+  line-height: .75;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#caption{
+  background-color: #148bff;
+  color: #00206b;
+  font-size: 15px;
+  font-weight: 30;
+  float: middle;
+  text-align: center;
+  translate: 0px -50px;
+}
+
 .searchbar input[type=text] {
   float: middle;
   padding: 6px;
   border: 1px;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: 30;
   text-align: center;
   font-family: 'BebasNeue', Fantasy, sans-serif;
-  font-weight: 30;
   color: #00206b;
 }
 
@@ -23,20 +76,10 @@
   float: middle;
   text-align: center;
 }
- h1{
- 	text-shadow: 2px 2px 4px rgba(0, 32, 107, 0.25),
-               3px 4px 4px rgba(0, 32, 107, 0.5),
-               4px 6px 4px rgba(0, 32, 107, 0.75),
-               5px 8px 4px rgba(0, 32, 107, 1);
- 	font-size: 70px;
- 	  font-weight: 600;
- 	  /*background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, #4140FF, #1414C8 10%, #4140FF 20%);*/
- 	 /* color: transparent;*/
-   color: #f2f2f2;
- 	  background-clip: text;
- 	  -webkit-background-clip: text;
-	text-align: center;
-	
+
+.searchbar input{
+  height: 50px;
+  width: 500px;
 }
 /*
 @font-face {
@@ -61,41 +104,10 @@
 */
 
 
-#title{
-  background: #148bff;
-	text-align: center;
-	font-family: 'Bigdex', Fantasy, sans-serif;
-  font-weight: 30;
-}
+
 
  
- #navigation {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #148bff;
-  font-family: 'BebasNeue', Fantasy, sans-serif;
-  font-weight: 30;
-}
-
-#navigation li {
-  float: left;
-}
-
-#navigation li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-#navigation li a:hover {
-  background-color: #f2f2f2;
-  color: #00206b;
-}
+ 
   
 /* logo slider css */
 
