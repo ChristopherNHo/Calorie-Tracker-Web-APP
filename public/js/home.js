@@ -17,6 +17,7 @@ success: add
 function askServings(number)
 {
 	chosenOption = number;
+	console.log(chosenOption);
 	$(".serving").empty();
 	$(".serving").text("How many servings of option " + (number+1) +  "? (Serving size = 100g)")
 	$(".serving").append('<input id="servings" type="number" value="1" >');
@@ -50,7 +51,7 @@ var proteins = 0;
 var sugars = 0;
 
 
-for(var j = 0;j<5;j++){
+for(var j = 0;j<10;j++){
 	var nutrients = data.name.foods[j].foodNutrients
 
 		for(var i = 0;i<nutrients.length;i++){
@@ -71,8 +72,6 @@ for(var j = 0;j<5;j++){
 			}
 
 		}
-		//send nutrient values to server, have server store it in an array
-		var values = "Choose option " + (j+1);
 		$("#food").append('<li>' + data.name.foods[j].description + " : Calories - " + calories +
     " kcal, Total Fats - " + fats + " g, Carbs - " + carbs + " g, Proteins - " + proteins +
     " g , Sugars - " + sugars + " g" +  '</li>');
@@ -80,35 +79,12 @@ for(var j = 0;j<5;j++){
 		$.ajax({
             url: "/addfoodlist",
             type: "POST",
-            data: {foodName:data.name.foods[j].description, calories:calories, fats:fats, carbs:carbs, proteins:proteins, sugars:sugars},  
+            data: {foodName:data.name.foods[j].description, calories:calories, fats:fats, carbs:carbs, proteins:proteins, sugars:sugars, options:10},  
             dataType: "json"
           });
 
-
-
-// HARD CODED, FIX LATER
-
-		if(j == 0){
-			$("#food").append('<li> <input id=option0 onclick="askServings(0)" type="button"  /></li>');
-			$("#option0").val(values);
-		}
-		else if(j == 1){
-			$("#food").append('<li> <input id=option1 onclick="askServings(1)" type="button"  /></li>');
-			$("#option1").val(values);
-		}
-		else if(j == 2){
-			$("#food").append('<li> <input id=option2 onclick="askServings(2)" type="button"  /></li>');
-			$("#option2").val(values);
-		}
-		else if(j == 3){
-			$("#food").append('<li> <input id=option3 onclick="askServings(3)" type="button"  /></li>');
-			$("#option3").val(values);
-		}
-		else if(j == 4){
-			$("#food").append('<li> <input id=option4 onclick="askServings(4)" type="button"  /></li>');
-			$("#option4").val(values);
-		}
-		
+		let str = "<button onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>";
+		$("#food").append(str);
 	}
 
 
@@ -126,6 +102,7 @@ $(document).ready(function(){
     $(".serving").keydown( function( event ) {
         if ( event.which === 13 ) {
           //alert("serving button + enter")
+          console.log($("#servings").val());
           updateTotal($("#servings").val())
           event.preventDefault();
           return false;
