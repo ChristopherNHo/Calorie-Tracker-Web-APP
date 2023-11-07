@@ -7,6 +7,8 @@ let fetch = require("node-fetch");
 let foodList = [];
 let foodListIndex = 0;
 
+let foodList2 = [];
+
 let total = [];
 let totalIndex = 0;
 //PARAMETERS WE PASS WHEN WE DO AN API CALL
@@ -72,7 +74,7 @@ router.get("/foodsearch",function(req,res) {
 
 router.post("/addfoodlist",function(req,res) {
 console.log("ADDED POST FOOD LIST")
-if(foodListIndex == 5)
+if(foodListIndex == req.body.options)
   foodListIndex = 0;
 var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 foodList[foodListIndex] = temp;
@@ -87,7 +89,9 @@ router.put("/getfoodlist",function(req,res) {
 console.log(req.body.index);
 console.log("CHANGE ITEM FROM FOOD LIST")
 
-foodList2 = foodList
+foodList2 = [];
+foodList2[req.body.index] = foodList[req.body.index];
+console.log(foodList2[req.body.index])
 
 foodList2[req.body.index].calories *= req.body.multiplier;
 foodList2[req.body.index].fats *= req.body.multiplier;
@@ -95,11 +99,13 @@ foodList2[req.body.index].carbs *= req.body.multiplier;
 foodList2[req.body.index].proteins *= req.body.multiplier;
 foodList2[req.body.index].sugars *= req.body.multiplier;
 
-console.log(foodList2[req.body.index].calories);
-total[totalIndex] = foodList2[req.body.index];
+console.log(foodList2[req.body.index]);
 
-res.json(foodList[req.query.index]);
+
+total[totalIndex] = foodList2[req.body.index]; //keeps updating even after totalIndex is changed?
+
 totalIndex++;
+res.json(foodList[req.body.index]);
 });
 
 router.post("/addfood",function(req,res) {
