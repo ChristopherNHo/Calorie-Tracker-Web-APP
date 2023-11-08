@@ -80,6 +80,7 @@
 .searchbar input{
   height: 50px;
   width: 500px;
+  box-shadow: 
 }
 /*
 @font-face {
@@ -111,7 +112,7 @@
   
 /* logo slider css */
 
-logos * {
+.logos {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -135,8 +136,8 @@ logos body {
   padding: 60px 0;
   background: white;
   white-space: nowrap;
-  position: absolute; /* originally set to position: relative; */
-  bottom: 0px;
+  position: relative; /* originally set to position: relative; */
+  bottom: -380px;
 }
 
 .logos:before,
