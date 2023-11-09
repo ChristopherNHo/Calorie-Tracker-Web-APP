@@ -28,7 +28,7 @@ let totalSugar = 0;
 		
 		console.log("HERE FROM FOR LOOP")
 		let str = "<tr id='row"+ (i+1) +"' > <th>" + data.total[i].foodName +  "</th> <th>" + data.total[i].calories + "</th> <th>" +data.total[i].proteins + "</th> <th>" + data.total[i].carbs +
-		 "</th> <th>" +data.total[i].fats+ "</th> <th>" + data.total[i].sugars + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
+		 "</th> <th>" +data.total[i].fats+ "</th> <th>" + data.total[i].sugars + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' class = 'button' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
 		$("#total").append(str);
 		totalCal= round(totalCal,2);
 		totalProtein= round(totalProtein,2);
