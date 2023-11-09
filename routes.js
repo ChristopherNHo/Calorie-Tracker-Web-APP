@@ -85,6 +85,19 @@ res.json(foodList[foodListIndex-1]);
 
 });
 
+router.delete("/deletefoodlist",function(req,res) {
+console.log("DELETE FOOD LIST")
+
+const newtotal = total.splice(req.params.index, 1);
+
+totalIndex--;
+
+console.log(total);
+res.json(null);
+
+
+});
+
 router.put("/getfoodlist",function(req,res) {
 console.log(req.body.index);
 console.log("CHANGE ITEM FROM FOOD LIST")
