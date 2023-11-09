@@ -30,7 +30,12 @@ let totalSugar = 0;
 		let str = "<tr id='row"+ (i+1) +"' > <th>" + data.total[i].foodName +  "</th> <th>" + data.total[i].calories + "</th> <th>" +data.total[i].proteins + "</th> <th>" + data.total[i].carbs +
 		 "</th> <th>" +data.total[i].fats+ "</th> <th>" + data.total[i].sugars + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
 		$("#total").append(str);
-
+		totalCal= round(totalCal,2);
+		totalProtein= round(totalProtein,2);
+		totalCarb= round(totalCarb,2);
+		totalFat= round(totalFat,2);
+		totalSugar=round(totalSugar,2);
+		
 		}
 		let str = "<tr> <th>" + "TOTAL" +  "</th> <th>" + totalCal + "</th> <th>" +totalProtein + "</th> <th>" + totalCarb+ "</th> <th>" +totalFat+ "</th> <th>" + totalSugar + "</th> </tr>";
 		$("#total").append(str);
@@ -66,4 +71,8 @@ function remove(index){
 	data: null,
 	success: add  
 	});
+}
+function round(number, precision) {
+    var factor = Math.pow(10, precision);
+    return Math.round(number * factor) / factor;
 }
