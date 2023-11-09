@@ -42,6 +42,28 @@ let totalSugar = 0;
 	}
 }
 function remove(index){
+	
 	alert("Remove " + index);
 	$('#row' + (index)).remove();
+	$.ajax({
+      url: "/deletefoodlist",
+      type: "DELETE",
+      data: {index:index},
+      success: function(data){
+		alert("item deleted");
+      },
+      dataType: "json"
+    }); 
+
+
+    $("#total").empty();
+    let str = "<tr> <th>" + "Food Name" +  "</th> <th>" + "Calories" + "</th> <th>" + "Protein" + "</th> <th>" + "Carbohydrates" + "</th> <th>" + "Fats" + "</th> <th>" + "Sugars" + "</th> <th>" + "Remove Option?" + "</th> </tr>";
+	$("#total").append(str);
+    
+    $.ajax({
+	url: "/checktotal",
+	type: "GET",
+	data: null,
+	success: add  
+	});
 }
