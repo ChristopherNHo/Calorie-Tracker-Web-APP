@@ -8,33 +8,55 @@
 	<title>ABOUT</title>
 	<script type="text/javascript" src = "https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 
-	<ul>
-
-	<!--  <li><a href="http://localhost:3000">Home</a></li>
-	  <li><a href="http://localhost:3000/total">Totals</a></li>
-	  <li><a href="http://localhost:3000/about">About</a></li> -->
-
-	  <li class = "navigation"><a href="http://173.255.210.209:3005">Home</a></li>
-	<li class = "navigation"><a href="http://173.255.210.209:3005/total">Totals</a></li>
-	<li class = "navigation"><a href="http://173.255.210.209:3005/about">About</a></li>
-
-	  
-	</ul>
 	
 	</head>
 	<body>
-		<div class= "title">
-		<h1 id = "title">ABOUT PAGE</h1>
-		<hr>
+		<ul id = "navigation">
+		  <li class = "navigation"><a href="http://localhost:3000">Home</a></li>
+		  <li class = "navigation"><a href="http://localhost:3000/total">Totals</a></li>
+		  <li class = "navigation"><a href="http://localhost:3000/about">About</a></li>
+		  
+		 
+			
+		<h1 id = "title">About Page</h1>
+		<h2 id = "caption">Get to know the Web Developers of this app</h2> 
+		
 		<form action="#">
 		
 		
+		
+		</ul>
+		
+		<div id="stage">
+		  <a href="/images/1.jpeg"><img src="images/1.jpeg" width="500" height="400"></a> 
+		  <a href="/images/2.jpg"><img src="images/2.jpg" width="500" height="400"></a>
+		  <a href="/images/3.jpg"><img src="images/3.jpg" width="500" height="400"></a>
+		  <a href="/images/4.jpg"><img src="images/4.jpg" width="500" height="400"></a>
+		  <a href="/images/5.jpg"><img src="images/5.jpg" width="500" height="400"></a>
+		  
+		</div>
+		
 	
 		
-		<div/>
+		
+
+		
 
 
         <script src="js/home.js"></script>
+          <script type="text/javascript">
+
+	window.addEventListener("DOMContentLoaded", function(e) {
+
+	    var stage = document.getElementById("stage");
+	    var fadeComplete = function(e) { stage.appendChild(arr[0]); };
+	    var arr = stage.getElementsByTagName("a");
+	    for(var i=0; i < arr.length; i++) {
+	      arr[i].addEventListener("animationend", fadeComplete, false);
+	    }
+
+	  }, false);
+	</script>
 
 	
 
