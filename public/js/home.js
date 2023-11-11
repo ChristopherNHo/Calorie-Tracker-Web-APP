@@ -83,7 +83,7 @@ for(var j = 0;j<10;j++){
             dataType: "json"
           });
 
-		let str = "<button onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>";
+		let str = "<button class = 'button' onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>";
 		$("#food").append(str);
 	}
 
