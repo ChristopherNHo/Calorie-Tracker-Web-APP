@@ -25,13 +25,23 @@ function askServings(number)
 }
 function updateTotal(multiplier)
 {
+	var servingAmount = Number($("#servings").val());
+	console.log(servingAmount);
 	$(".serving").empty();
+
+	if(servingAmount > 0){
 	$.ajax({
 	url: "/getfoodlist",
 	type: "PUT",
 	data: {index:chosenOption, multiplier:multiplier},
 	success: alertClient
+	
+
 });
+}
+	else {
+		alert("Servings must be greater than 0");
+	}
 
 }
 function alertClient(data){
