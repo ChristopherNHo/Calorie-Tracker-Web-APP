@@ -7,10 +7,41 @@
   font-family: 'BebasNeue';
   src: url('/fonts/BebasNeue-Regular.ttf');
 }
+
+#navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #148bff;
+  font-family: 'BebasNeue', Fantasy, sans-serif;
+  font-weight: 30;
+
+}
+
+#navigation li a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+#navigation li a:hover {
+  color: #00206b;
+}
+
 #title{
-  
+  text-shadow: 2px 2px 4px rgba(0, 32, 107, 0.25),
+               3px 4px 4px rgba(0, 32, 107, 0.5),
+               4px 6px 4px rgba(0, 32, 107, 0.75),
+               5px 8px 4px rgba(0, 32, 107, 1);
   font-size: 110px;
   font-weight: 30;
+    /*background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, #4140FF, #1414C8 10%, #4140FF 20%);*/
+   /* color: transparent;*/
   color: #f2f2f2;
   background-color: #148bff;
   font-family: 'Bigdex', Fantasy, sans-serif;
@@ -19,6 +50,17 @@
   text-align: center;
   vertical-align: middle;
 }
+
+#caption{
+  background-color: #148bff;
+  color: #00206b;
+  font-size: 15px;
+  font-weight: 30;
+  float: middle;
+  text-align: center;
+  translate: 0px -50px;
+}
+
 #total{
 
     font-family: Arial, Helvetica, sans-serif;
@@ -42,26 +84,6 @@
       text-align: left;
       background-color: #333;
       color: white;
-    }
-   
-    h1{
-         /*text-shadow: 2px 2px 4px rgba(65, 65, 255, 0.1),
-                   3px 4px 4px rgba(65, 65, 255, 0.15),
-                   4px 6px 4px rgba(65, 65, 255, 0.2),
-                   5px 8px 4px rgba(65, 65, 255, 0.25);*/
-         font-size: 70px;
-           font-weight: 600;
-           /*background-image: repeating-radial-gradient(circle closest-corner at 100px 100px, #4140FF, #1414C8 10%, #4140FF 20%);*/
-          /* color: transparent;*/
-       color: #333;
-           background-clip: text;
-           -webkit-background-clip: text;
-        text-align: center;
-        
-    }
-    #title{
-        text-align: center;
-        font-family: Fantasy;
     }
     
     
@@ -111,6 +133,8 @@
   justify-content: center;
   line-height: 1.25;
   margin: 0;
+  left: 1%;
+  top: 25%;
   min-height: 3rem;
   padding: calc(.875rem - 1px) calc(1.5rem - 1px);
   position: relative;
@@ -141,4 +165,3 @@
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
 }
-
