@@ -95,3 +95,14 @@
     from { opacity: 1.0; }
     to   { opacity: 0.0; }
   }
+
+  p {
+  display: block;
+  font-family: 'BebasNeue', Fantasy, sans-serif;
+  color: #00206b;
+  font-size: 20px;
+  font-weight: 30;
+  float: middle;
+  text-align: center;
+  translate: 0px 30px;
+}
