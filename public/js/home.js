@@ -95,7 +95,8 @@ for(var j = 0;j<10;j++){
 		}
 		$("#food").append('<li>' + data.name.foods[j].description + " : Calories - " + calories +
     " kcal, Total Fats - " + fats + " g, Carbs - " + carbs + " g, Proteins - " + proteins +
-    " g , Sugars - " + sugars + " g" +  '</li>');
+    " g , Sugars - " + sugars + " g"  +"   " +  "<button class = 'button' onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>" +'</li>');
+
 
 		$.ajax({
             url: "/addfoodlist",
@@ -103,9 +104,10 @@ for(var j = 0;j<10;j++){
             data: {foodName:data.name.foods[j].description, calories:calories, fats:fats, carbs:carbs, proteins:proteins, sugars:sugars, options:10},  
             dataType: "json"
           });
-
-		let str = "<button class = 'button' onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>";
-		$("#food").append(str);
+		document.getElementById("spinner").style.display="none";
+	
+		//let str = "<button class = 'button' onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>";
+		//$("#food").append(str);
 	}
 
 
@@ -114,6 +116,7 @@ $(document).ready(function(){
 
 	$("#search").keydown( function( event ) {
         if ( event.which === 13 ) {
+	  document.getElementById("spinner").style.display="block"
           clicked();
           event.preventDefault();
           return false;
