@@ -29,9 +29,20 @@ function updateTotal(multiplier)
 	$.ajax({
 	url: "/getfoodlist",
 	type: "PUT",
-	data: {index:chosenOption, multiplier:multiplier}
+	data: {index:chosenOption, multiplier:multiplier},
+	success: alertClient
 });
 
+}
+function alertClient(data){
+	
+	if(data == null){
+		alert("Food already in list, not added")
+	}
+	else{
+		alert("Food added to list")
+		console.log(data);
+	}
 }
 function addTotal(){
 	console.log("THIS WORKS FOOD ADDED")
