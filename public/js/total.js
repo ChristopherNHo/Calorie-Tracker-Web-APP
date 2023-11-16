@@ -25,10 +25,13 @@ let totalSugar = 0;
 		totalCarb= totalCarb + Number(data.total[i].carbs);
 		totalFat= totalFat + Number(data.total[i].fats);
 		totalSugar= totalSugar + Number(data.total[i].sugars);
+
+		
+
 		
 		console.log("HERE FROM FOR LOOP")
-		let str = "<tr id='row"+ (i+1) +"' > <th>" + data.total[i].foodName +  "</th> <th>" + data.total[i].calories + "</th> <th>" +data.total[i].proteins + "</th> <th>" + data.total[i].carbs +
-		 "</th> <th>" +data.total[i].fats+ "</th> <th>" + data.total[i].sugars + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' class = 'button' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
+		let str = "<tr id='row"+ (i+1) +"' > <th>" + data.total[i].foodName +  "</th> <th>" + round(data.total[i].calories,2) + "</th> <th>" +round(data.total[i].proteins,2) + "</th> <th>" + round(data.total[i].carbs,2) +
+		 "</th> <th>" +round(data.total[i].fats,2)+ "</th> <th>" + round(data.total[i].sugars,2) + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' class = 'button' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
 		$("#total").append(str);
 		totalCal= round(totalCal,2);
 		totalProtein= round(totalProtein,2);
@@ -48,14 +51,14 @@ let totalSugar = 0;
 }
 function remove(index){
 	
-	alert("Remove " + index);
+	
 	$('#row' + (index)).remove();
 	$.ajax({
       url: "/deletefoodlist",
       type: "DELETE",
       data: {index:index},
       success: function(data){
-		alert("item deleted");
+		alert("Item deleted");
       },
       dataType: "json"
     }); 
