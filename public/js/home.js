@@ -59,7 +59,7 @@ function addTotal(){
 }
 function add(data){
 if(!data){
-    alert("ERROR");
+    alert("Please Enter a Valid Food or Drink");
 }
 
 $(".serving").empty();
@@ -128,9 +128,9 @@ $(document).ready(function(){
           //alert("serving button + enter")
           console.log($("#servings").val());
           updateTotal($("#servings").val())
+          $("#food").empty();
           event.preventDefault();
           return false;
         }
       }); 
   });
-
