@@ -11,8 +11,6 @@ let foodList2 = [];
 
 let total = [];
 let totalIndex = 0;
-
-let chosenFoods = [];
 //PARAMETERS WE PASS WHEN WE DO AN API CALL
 
 let params = {
@@ -78,10 +76,8 @@ router.post("/addfoodlist",function(req,res) {
 console.log("ADDED POST FOOD LIST")
 if(foodListIndex == req.body.options)
   foodListIndex = 0;
-var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars, foodIndex:foodListIndex};
+var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
 foodList[foodListIndex] = temp;
-chosenFoods[foodListIndex] = false;
-
 console.log(foodList[foodListIndex])
 console.log(foodListIndex)
 foodListIndex++;
@@ -92,8 +88,7 @@ res.json(foodList[foodListIndex-1]);
 router.delete("/deletefoodlist",function(req,res) {
 console.log("DELETE FOOD LIST")
 
-let deleted = total.splice(req.params.deleteIndex, 1);
-chosenFoods[deleted[0].foodIndex] = false;
+const newtotal = total.splice(req.params.index, 1);
 
 totalIndex--;
 
@@ -107,35 +102,23 @@ router.put("/getfoodlist",function(req,res) {
 console.log(req.body.index);
 console.log("CHANGE ITEM FROM FOOD LIST")
 
-if(chosenFoods[req.body.index] == false){
-
 foodList2 = [];
 foodList2[req.body.index] = foodList[req.body.index];
 console.log(foodList2[req.body.index])
 
-foodList2[req.body.index].calories *= req.body.multiplier;  //these lines of code are affecting foodList as well?
+foodList2[req.body.index].calories *= req.body.multiplier;
 foodList2[req.body.index].fats *= req.body.multiplier;
 foodList2[req.body.index].carbs *= req.body.multiplier;
 foodList2[req.body.index].proteins *= req.body.multiplier;
 foodList2[req.body.index].sugars *= req.body.multiplier;
 
-changedFood = foodList2[req.body.index];
-
-console.log(changedFood);
+console.log(foodList2[req.body.index]);
 
 
-total[totalIndex] = changedFood; //keeps updating even after totalIndex is changed?
-
-foodList2 = null;
+total[totalIndex] = foodList2[req.body.index]; //keeps updating even after totalIndex is changed?
 
 totalIndex++;
-chosenFoods[req.body.index] = true;
-console.log(chosenFoods);
 res.json(foodList[req.body.index]);
-}
-else{
-  res.json(null)
-}
 });
 
 router.post("/addfood",function(req,res) {
