@@ -94,7 +94,10 @@ res.json(foodList[foodListIndex-1]);
 router.delete("/deletefoodlist",function(req,res) {
 console.log("DELETE FOOD LIST")
 
-const newtotal = total.splice(req.params.index, 1);
+console.log(req.body.index)
+const newtotal = total.splice((req.body.index-1), 1);
+
+db.deleteData((req.body.index-1),res);
 
 totalIndex--;
 
@@ -125,7 +128,7 @@ let carbs = foodList2[req.body.index].carbs;
 let proteins = foodList2[req.body.index].proteins;
 let sugars = foodList2[req.body.index].sugars;
 
-let obj = new Data(foodName,calories,fats,carbs,proteins,sugars);
+let obj = new Data(foodName,calories,fats,carbs,proteins,sugars,totalIndex);
 
 db.postData(obj,res);
 
