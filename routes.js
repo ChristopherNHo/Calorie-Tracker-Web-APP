@@ -27,6 +27,12 @@ router.get("/",function(req,res) {
   	var thePath = path.resolve(__dirname,"public/views/index.html");
 	   res.sendFile(thePath);	
 });
+
+const myDatabase = require('./myDatabase');
+let db = new myDatabase();
+
+const Data = require('./Data');
+
 router.get("/total",function(req,response) {
   response.sendFile(__dirname + "/public/views/total.html");
 });
@@ -112,8 +118,19 @@ foodList2[req.body.index].carbs *= req.body.multiplier;
 foodList2[req.body.index].proteins *= req.body.multiplier;
 foodList2[req.body.index].sugars *= req.body.multiplier;
 
-console.log(foodList2[req.body.index]);
+let foodName = foodList2[req.body.index].foodName;
+let calories = foodList2[req.body.index].calories;
+let fats = foodList2[req.body.index].fats;
+let carbs = foodList2[req.body.index].carbs;
+let proteins = foodList2[req.body.index].proteins;
+let sugars = foodList2[req.body.index].sugars;
 
+let obj = new Data(foodName,calories,fats,carbs,proteins,sugars);
+
+db.postData(obj,res);
+
+
+console.log(foodList2[req.body.index]);
 
 total[totalIndex] = foodList2[req.body.index]; //keeps updating even after totalIndex is changed?
 
