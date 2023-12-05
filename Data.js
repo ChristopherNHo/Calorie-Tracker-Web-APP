@@ -1,5 +1,5 @@
-let Data = function(foodname,calories,fats,carbs,proteins,sugars) {
-    this.foodname = foodname;
+let Data = function(foodName,calories,fats,carbs,proteins,sugars) {
+    this.foodName = foodName;
     this.calories = calories;
     this.fats = fats; 
     this.carbs = carbs
