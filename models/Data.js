@@ -1,14 +1,16 @@
 var mongoose = require("mongoose");
 
 var Data = mongoose.model("Info",{
-    ident: {
+    foodName: {
         required: true,
         unique: true,
-        type:Number
+        type:String
     },
-    name: String,
-    grade: Number,
-    residence: String
+    calories: Number,
+    fats: Number,
+    carbs: Number,
+    proteins: Number,
+    sugars: Number
 });
 
 
