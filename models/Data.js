@@ -10,7 +10,8 @@ var Data = mongoose.model("Info",{
     fats: Number,
     carbs: Number,
     proteins: Number,
-    sugars: Number
+    sugars: Number,
+    totalIndex: Number
 });
 
 
