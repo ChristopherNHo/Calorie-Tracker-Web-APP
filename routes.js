@@ -99,6 +99,12 @@ const newtotal = total.splice((req.body.index-1), 1);
 
 db.deleteData((req.body.index-1),res);
 
+if(req.body.index-1 < totalIndex){
+  for(let i = req.body.index;i<totalIndex;i++){
+    db.putData(i,res);
+  }
+}
+
 totalIndex--;
 
 console.log(total);
@@ -157,9 +163,7 @@ if(total[0]==null){
 }
 else{
     res.json({total:total,index:totalIndex});
-
-
-}
+  }
 
 
 });
