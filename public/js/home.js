@@ -1,4 +1,7 @@
 let chosenOption = 0;
+let listFood = [];
+let listFoodIndex = 0;
+
 
 
 function clicked()
@@ -25,6 +28,9 @@ function askServings(number)
 }
 function updateTotal(multiplier)
 {
+	let chosenFood = listFood[chosenOption];
+	console.log("TEST");
+	console.log(listFood[chosenOption]);
 	var servingAmount = Number($("#servings").val());
 	console.log(servingAmount);
 	$(".serving").empty();
@@ -33,7 +39,7 @@ function updateTotal(multiplier)
 	$.ajax({
 	url: "/getfoodlist",
 	type: "PUT",
-	data: {index:chosenOption, multiplier:multiplier},
+	data: {multiplier:multiplier,food:chosenFood},
 	success: alertClient
 	
 
@@ -61,6 +67,10 @@ function add(data){
 if(!data){
     alert("Please Enter a Valid Food or Drink");
 }
+for(var i = 0;i<listFood.length;i++){
+	listFood[i] = null;
+}
+listFoodIndex = 0;
 
 $(".serving").empty();
 $("#food").empty();
@@ -70,6 +80,8 @@ var fats = 0;
 var carbs = 0;
 var proteins = 0;
 var sugars = 0;
+
+
 
 
 for(var j = 0;j<10;j++){
@@ -91,19 +103,16 @@ for(var j = 0;j<10;j++){
 			else if (nutrients[i].nutrientId == 2000){
 				sugars = nutrients[i].value;
 			}
-
+			
 		}
+		var temp = {foodName : data.name.foods[j].description,calories: calories, fats: fats,carbs:carbs,proteins:proteins,sugars:sugars};
+		listFood[listFoodIndex] = temp;
+		console.log(listFood[listFoodIndex]);
+		listFoodIndex++;
 		$("#food").append('<li>' + data.name.foods[j].description + " : Calories - " + calories +
     " kcal, Total Fats - " + fats + " g, Carbs - " + carbs + " g, Proteins - " + proteins +
     " g , Sugars - " + sugars + " g"  +"   " +  "<button class = 'button' onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>" +'</li>');
 
-
-		$.ajax({
-            url: "/addfoodlist",
-            type: "POST",
-            data: {foodName:data.name.foods[j].description, calories:calories, fats:fats, carbs:carbs, proteins:proteins, sugars:sugars, options:10},  
-            dataType: "json"
-          });
 		document.getElementById("spinner").style.display="none";
 	
 		//let str = "<button class = 'button' onclick='askServings("+ j +")' type='button' >Choose option "+ (j+1) +"</button>";
