@@ -3,11 +3,7 @@ let express = require("express");
 let router = express.Router();
 let fetch = require("node-fetch");
 
-
-let foodList = [];
-let foodListIndex = 0;
-
-let foodList2 = [];
+let foodList2;
 
 let total = [];
 let totalIndex = 0;
@@ -78,19 +74,6 @@ router.get("/foodsearch",function(req,res) {
 });
 
 
-router.post("/addfoodlist",function(req,res) {
-console.log("ADDED POST FOOD LIST")
-if(foodListIndex == req.body.options)
-  foodListIndex = 0;
-var temp = {foodName : req.body.foodName,calories: req.body.calories, fats: req.body.fats,carbs:req.body.carbs,proteins:req.body.proteins,sugars:req.body.sugars};
-foodList[foodListIndex] = temp;
-console.log(foodList[foodListIndex])
-console.log(foodListIndex)
-foodListIndex++;
-res.json(foodList[foodListIndex-1]);
-
-});
-
 router.delete("/deletefoodlist",function(req,res) {
 console.log("DELETE FOOD LIST")
 
@@ -114,37 +97,37 @@ res.json(null);
 });
 
 router.put("/getfoodlist",function(req,res) {
-console.log(req.body.index);
 console.log("CHANGE ITEM FROM FOOD LIST")
 
-foodList2 = [];
-foodList2[req.body.index] = foodList[req.body.index];
-console.log(foodList2[req.body.index])
+foodList2 = req.body.food;
+console.log(req.body.food);
+console.log(foodList2);
 
-foodList2[req.body.index].calories *= req.body.multiplier;
-foodList2[req.body.index].fats *= req.body.multiplier;
-foodList2[req.body.index].carbs *= req.body.multiplier;
-foodList2[req.body.index].proteins *= req.body.multiplier;
-foodList2[req.body.index].sugars *= req.body.multiplier;
+foodList2.calories *= req.body.multiplier;
+foodList2.fats *= req.body.multiplier;
+foodList2.carbs *= req.body.multiplier;
+foodList2.proteins *= req.body.multiplier;
+foodList2.sugars *= req.body.multiplier;
 
-let foodName = foodList2[req.body.index].foodName;
-let calories = foodList2[req.body.index].calories;
-let fats = foodList2[req.body.index].fats;
-let carbs = foodList2[req.body.index].carbs;
-let proteins = foodList2[req.body.index].proteins;
-let sugars = foodList2[req.body.index].sugars;
+let foodName = foodList2.foodName;
+let calories = foodList2.calories;
+let fats = foodList2.fats;
+let carbs = foodList2.carbs;
+let proteins = foodList2.proteins;
+let sugars = foodList2.sugars;
+
 
 let obj = new Data(foodName,calories,fats,carbs,proteins,sugars,totalIndex);
 
 db.postData(obj,res);
 
 
-console.log(foodList2[req.body.index]);
+console.log(foodList2);
 
-total[totalIndex] = foodList2[req.body.index]; //keeps updating even after totalIndex is changed?
+total[totalIndex] = foodList2
 
 totalIndex++;
-res.json(foodList[req.body.index]);
+res.json(foodList2);
 });
 
 router.post("/addfood",function(req,res) {
