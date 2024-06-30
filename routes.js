@@ -141,6 +141,10 @@ res.json(total[totalIndex]);
 });
 router.get("/checktotal",function(req,res) {
 console.log("CHECK GET");
+
+db.getData(res);
+
+/*
 if(total[0]==null){
   res.json(null);
 }
@@ -148,8 +152,9 @@ else{
     res.json({total:total,index:totalIndex});
   }
 
-
+*/
 });
+
 
 
  
