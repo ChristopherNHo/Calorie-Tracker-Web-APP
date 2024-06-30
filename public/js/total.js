@@ -11,6 +11,7 @@ $(document).ready(function(){
 
  }); 
 function add(data){
+	console.log(data);
 let totalCal = 0;
 let totalProtein =0;
 let totalCarb = 0;
@@ -19,19 +20,19 @@ let totalSugar = 0;
 
 	if(data){
 		console.log(data);
-		for(var i=0; i<data.index; i++){
-		totalCal= totalCal + Number(data.total[i].calories);
-		totalProtein= totalProtein + Number(data.total[i].proteins);
-		totalCarb= totalCarb + Number(data.total[i].carbs);
-		totalFat= totalFat + Number(data.total[i].fats);
-		totalSugar= totalSugar + Number(data.total[i].sugars);
+		for(var i=0; i<data.length; i++){
+		totalCal= totalCal + Number(data[i].calories);
+		totalProtein= totalProtein + Number(data[i].proteins);
+		totalCarb= totalCarb + Number(data[i].carbs);
+		totalFat= totalFat + Number(data[i].fats);
+		totalSugar= totalSugar + Number(data[i].sugars);
 
 		
 
 		
 		console.log("HERE FROM FOR LOOP")
-		let str = "<tr id='row"+ (i+1) +"' > <th>" + data.total[i].foodName +  "</th> <th>" + round(data.total[i].calories,2) + "</th> <th>" +round(data.total[i].proteins,2) + "</th> <th>" + round(data.total[i].carbs,2) +
-		 "</th> <th>" +round(data.total[i].fats,2)+ "</th> <th>" + round(data.total[i].sugars,2) + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' class = 'button' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
+		let str = "<tr id='row"+ (i+1) +"' > <th>" + data[i].foodName +  "</th> <th>" + round(data[i].calories,2) + "</th> <th>" +round(data[i].proteins,2) + "</th> <th>" + round(data[i].carbs,2) +
+		 "</th> <th>" +round(data[i].fats,2)+ "</th> <th>" + round(data[i].sugars,2) + "</th> + <th>" + "<button onclick='remove("+ (i+1) +")' class = 'button' type='button' >Remove item "+ (i+1) +"</button>" + "</th> </tr>";
 		$("#total").append(str);
 		totalCal= round(totalCal,2);
 		totalProtein= round(totalProtein,2);
