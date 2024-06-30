@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 
-var Data = mongoose.model("Info",{
+const { Schema } = mongoose;
+
+const foodSchema = new Schema({
     foodName: {
         required: true,
         unique: true,
@@ -13,6 +15,8 @@ var Data = mongoose.model("Info",{
     sugars: Number,
     totalIndex: Number
 });
+
+var Data = mongoose.model("items",foodSchema);
 
 
 
