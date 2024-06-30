@@ -10,27 +10,28 @@ let myDatabase = function() {
 
 myDatabase.prototype.postData = function(data,res) {
   let obj = {foodName:data.foodName,calories:data.calories,fats:data.fats,carbs:data.carbs,proteins:data.proteins,sugars:data.sugars,totalIndex:data.totalIndex};
-  DataModel.create(obj,function(info) {
-      
-      res.json();
 
-  });
+  let food =  new DataModel(obj);
+
+
+  console.log(food);
+
+  food.save();
 }
-myDatabase.prototype.getData = function(totalIndex,res) {
+myDatabase.prototype.getData = function(res) {
+  console.log("Inside of getData");
+  DataModel.find({},function(error,items) {   
+      console.log(items);
 
-  DataModel.find({totalIndex:totalIndex},function(info,error) {   
-      console.log(info);
       if (error) {
+        console.log(error)
           return res.json({error:true});
       }
-      else if (info == null) {
+      else if (items == null) {
           return res.json({error:true});
       }
 
-      if (info.length == 1)    
-      		return res.json({foodName:info[0].foodName,calories:info[0].calories,fats:info[0].fats,carbs:info[0].carbs,proteins:info[0].proteins,sugars:info[0].sugars,totalIndex:info[0].totalIndex});
-      else
-          return res.json({error:true});
+      res.json(items);
    });
 }
 myDatabase.prototype.putData = function(oldIndex,res) {
